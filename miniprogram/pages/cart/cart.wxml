@@ -1,0 +1,56 @@
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">购物车</view>
+</cu-custom>
+<view>
+  <view wx:if="dataList.length>0" class="cu-card article no-card arrow margin" data-id="{{item._id}}" wx:for="{{dataList}}" wx:key="index">
+    <view class="cu-item shadow">
+      <view class="title flex justify-between">
+        <view class="text-cut">{{item.title}}</view>
+        <view class="cuIcon-close text-red" data-index="{{index}}" bindtap="onDelete"></view>
+      </view>
+      <view class="content">
+        <image src="{{item.imgList[0]}}" mode="aspectFill"></image>
+        <view class="desc">
+          <!-- <view class="text-cut">{{item.content}}</view> -->
+          <view>
+            <text class="text-price text-red ">{{item.price}}</text>
+            <checkbox-group class="fr" data-index="{{index}}" bindchange="selectOne">
+            <checkbox class="round blue" value="{{item.checked}}"  checked="{{item.checked}}" ></checkbox>
+            </checkbox-group>
+          </view>
+          <view>
+            <view class="cu-tag bg-red light sm">包邮</view>
+          </view>
+          <view>
+            <view class="cu-tag bg-red light sm round" wx:for="{{item.tags}}" wx:key="key" wx:for-item="sub">{{sub}}</view>
+          <view class="fr"><stepper num="{{item.number}}" data-index="{{index}}" bind:changeNum="changeNum"></stepper></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class=" padding-xs flex align-center" wx:if="{{dataList.length==0}}">
+    <view class="flex-sub text-center">
+    <text class="cuIcon-pick text-xl text-red"></text>
+      <view class=" text-xl padding">
+        <text class="text-red text-bold">空空如也</text>
+      </view>
+      <view class="padding">去浏览商品添加到购物车把</view>
+    </view>
+  </view>
+  <!-- <view class="text-center " wx:if="{{dataList.length==0}}">
+    空空如也
+  </view> -->
+</view>
+<view class="cu-bar bg-white tabbar border shop fixed-bottom flex">
+  <view class="basis-xs">
+   <checkbox-group class="margin-left" bindchange="selectalltap">
+   <checkbox class="round blue" value="{{checkAll}}" checked="{{checkAll}}" ></checkbox>
+   </checkbox-group>
+   
+  </view>
+  <view class="action text-red text-sl basis-sm">
+    总价:<text class="text-price ">{{total}}</text>
+  </view>
+  <view class="bg-red btn basis-sm shadow" bindtap="toBuy">立即购买</view>
+</view>

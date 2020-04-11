@@ -1,0 +1,41 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="content">搜索列表</view>
+</cu-custom>
+
+<view class="cu-bar bg-gradual-blue search nav fixed" style="top:{{CustomBar}}px">
+  <view class="search-form radius">
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="搜索标题" confirm-type="search" bindinput="searchRecord"></input>
+  </view>
+  <view class="action">
+    <picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+      <view class="picker">
+        {{picker[index]}}
+      </view>
+    </picker>
+    <text class="cuIcon-triangledownfill"></text>
+  </view>
+</view>
+
+<view style="margin-top:60px">
+  <view class="cu-card article no-card arrow margin" bindtap="goDetail" data-id="{{item._id}}" wx:for="{{dataList}}" wx:key="index">
+    <view class="cu-item shadow">
+      <view class="title">
+        <view class="text-cut">{{item.title}}</view>
+      </view>
+      <view class="content">
+        <image class="img" src="{{item.img}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view>
+          <view class="cu-tag bg-red light sm">包邮</view>
+          </view>
+          <text class="text-price text-red ">{{item.price}}</text>
+          <!-- <text class="text-grey text-sm">{{item.time}}</text> -->
+          <view>
+            <view class="cu-tag bg-red light sm round" wx:for="{{item.tags}}" wx:for-item="sub">{{sub}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

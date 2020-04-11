@@ -1,0 +1,107 @@
+<!-- <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">服务详情</view>
+  </cu-custom> -->
+<!-- 登录弹窗 -->
+<auth is-show="{{isShowAuth}}" bind:onAuthEvent="onAuthEvent"></auth>
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">商品详情</view>
+  </cu-custom>
+  <view class="padding bg-white" wx:if="{{detail.imgList}}" bindtap="viewImage">
+    <swiper class="screen-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      <swiper-item wx:for="{{detail.imgList}}" wx:key="index">
+        <image src="{{item}}" mode="aspectFit"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view>
+    <view class="cu-form-group">
+      <view class="title">{{detail.title}}</view>
+      <view class="cu-tag bg-red sm" wx:if="{{detail.postage}}">包邮</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">类型</view>
+      <view class="">{{detail.type}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">标签</view>
+      <view><text class="cu-tag bg-red light sm round" wx:for="{{detail.tags}}">{{item}}</text>
+      </view>
+      
+    </view>
+    <view class="cu-form-group">
+      <view class="title">价格</view>
+      <view class="">{{detail.price?detail.price+'元':'无'}}</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">上架时间</view>
+      <view class="">{{detail.startDate}}</view>
+    </view>
+  </view>
+
+  <view class="cu-bar bg-white margin-top solid-top">
+    <view class="action">
+      <text class="cuIcon-titles text-green"></text>
+      <text class="text-black"> 详细</text>
+    </view>
+  </view>
+  <view class="cu-form-group bg-white solid-bottom margin-bottom">
+    <view class="text-black detail">{{detail.content}}</view>
+  </view>
+  <view class="box"></view>
+  <view class="cu-bar bg-white tabbar border shop fixed-bottom">
+    <button class="action" open-type="contact">
+      <view class="cuIcon-service text-green">
+        <view class="cu-tag badge"></view>
+      </view>
+      客服
+    </button>
+    <view class="action" bindtap="showModal" data-target="viewModal">
+      <view class="cuIcon-comment">
+        <view class="cu-tag badge">{{comments.length}}</view>
+      </view>
+      评论
+    </view>
+    <button class="action" data-name="shareBtn" open-type="share">
+      <view class="cuIcon-share">
+      </view>
+      分享
+    </button>
+    <view class="bg-orange submit" bindtap="addCart">加入购物车</view>
+    <view class="bg-red submit" bindtap="addBuy">立即订购</view>
+  </view>
+</scroll-view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+  <text class="cuIcon-pullright"></text>
+</view>
+<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <cu-custom>
+  </cu-custom>
+  <view class="cu-list menu-avatar comment solids-top margin-top-xl margin-bottom-xl shadow-lg margin-lr-sm">
+    <view class="cu-item input">
+      <view class="cu-avatar round" style="background-image:url({{userInfo.avatarUrl}});"></view>
+      <input class="solid-bottom" maxlength="35" cursor-spacing="10" bindinput="bindKeyInput" data-key="content" placeholder="输入你的评论"></input>
+      <view class="action">
+<button class="cu-btn cuIcon-add bg-gradual-blue shadow" role="button" bindtap="addComment"></button>
+      </view>
+    </view>
+    <view class="cu-item" wx:for="{{comments}}" wx:key="index">
+      <view class="cu-avatar round" style="background-image:url({{item.userInfo.avatarUrl}});"></view>
+      <view class="content">
+        <view class="text-grey">{{item.userInfo.nickName}}</view>
+        <view class="text-gray text-content text-df">
+          {{item.content}}
+        </view>
+        <view class="margin-top-sm flex justify-between">
+          <view class="text-gray text-df">{{item.date||'未知时间'}}</view>
+          <view>
+            <text class="cuIcon-appreciate text-gray"></text>
+            <text class="cuIcon-messagefill text-gray margin-left-sm"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

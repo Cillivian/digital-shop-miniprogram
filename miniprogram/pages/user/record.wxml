@@ -1,0 +1,38 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">订单列表</view>
+</cu-custom>
+<!-- <view class="record-list cu-list menu">
+  <view bindtap="goDetail" data-id="{{item._id}}" class="cu-item arrow" wx:for="{{dataList}}" wx:key="index">
+    <view class="content">
+      <text class="cuIcon-wenzi text-green"></text>
+      <text class="text-black">{{item.title}}-{{item.type}}</text>
+    </view>
+    <view class="action">
+      <text class="text-grey text-sm">{{item.time}}</text>
+    </view>
+  </view>
+</view> -->
+<view class="record-list cu-list menu">
+  <view class="cu-card bg-white padding article margin" wx:for="{{dataList}}" wx:key="index">
+  <text class="text-grey text-sm">{{item.time}}</text>
+  <view>{{item.address}}</view>
+    <view class="content">
+      <view class="cu-card article padding margin solids" wx:for="{{item.goods}}" wx:for-item="sub" wx:key="key">
+        <view class="cu-item shadow">
+          <!-- <view class="title">
+            <view class="text-cut">{{sub.title}}</view>
+          </view> -->
+          <view class="content">
+            <image src="{{sub.imgList[0]}}" mode="aspectFill"></image>
+            <view class="desc">
+              <view class="text-cut text-lg">{{sub.title}}</view>
+              <text class="text-price text-red ">{{sub.price}}*{{sub.number}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="text-price text-red ">{{item.total}}</view>
+  </view>
+</view>

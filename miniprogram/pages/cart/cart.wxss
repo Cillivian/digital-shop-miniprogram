@@ -1,0 +1,12 @@
+.fixed-bottom{
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  width:100%;
+}
+.btn{
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 50rpx;
+}

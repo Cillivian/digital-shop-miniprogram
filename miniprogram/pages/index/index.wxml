@@ -1,0 +1,40 @@
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">数码商城</view>
+</cu-custom>
+<view class="margin cu-bar bg-white round text-lg padding" bindtap="handleTosearch">
+<view><text class="cuIcon-search margin-right"></text>点这里搜索更多...</view>
+</view>
+<swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+  <swiper-item wx:for="{{banner}}" wx:key="index" class="{{cardCur==index?'cur':''}}">
+    <view class="swiper-item" bindtap="tapBanner" data-index="{{index}}">
+      <image src="{{item.url}}" mode="aspectFill"></image>
+    </view>
+  </swiper-item>
+</swiper>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action" bindtap="getLastRecord">
+    <text class="cuIcon-titles text-blue"></text>
+    <text class="text-xl text-bold"> 最新发布</text>
+  </view>
+</view>
+<view class="flex justify-start flex-wrap">
+  <view class="bg-white width-sub margin-xs padding-sm radius" wx:for="{{lastRecord}}" wx:key="index">
+    <view class="cu-item shadow" bindtap="goDetail" data-id="{{item._id}}">
+      <view class="content">
+        <image class="img" src="{{item.imgList[0]}}" mode="aspectFill"></image>
+        <view class="text-cut text-lg text-bold text-red">{{item.title}}
+          
+        </view>
+        <view class="desc">
+          <view class="text-content text-cut flex justify-start">
+            <p class="text-cut"> {{item.content}}</p><text class="text-price fr text-red margin-left">{{item.price}}</text>
+          </view>
+          <view>
+            <view class="cu-tag bg-red light sm round" wx:for="{{item.tags}}" wx:key="key" wx:for-item="sub">{{sub}}</view>
+            <view class="cu-tag bg-red light sm margin-left">包邮</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,35 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="content">新增商品</view>
+</cu-custom>
+<form>
+<view class="cu-form-group">
+    <view class="title">收货人</view>
+    <input bindinput="bindKeyInput" value="{{name}}" data-key="name" placeholder="请输入收货人信息"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">地址</view>
+    <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+			<view class="picker">
+				{{region[0]}}，{{region[1]}}，{{region[2]}}
+			</view>
+		</picker>
+  </view>
+  <view class="cu-form-group align-start">
+    <view class="title">详细地址</view>
+    <textarea maxlength="-1" bindinput="bindKeyInput" value="{{detail}}" data-key="detail" placeholder="请输入详细地址"></textarea>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">手机号码</view>
+   <input bindinput="bindKeyInput" value="{{phone}}" data-key="phone" type="tel" placeholder="请输入手机号码"></input>
+   <view class="cu-capsule radius">
+			<view class="cu-tag bg-blue">
+				+86
+			</view>
+			<view class="cu-tag line-blue">
+				中国大陆
+			</view>
+		</view>
+  </view>
+  <button class='margin cu-btn bg-green shadow lg block' bindtap="submit">添加</button>
+  <view></view>
+</form>

@@ -1,0 +1,21 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="content">收货地址</view>
+</cu-custom>
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+  <view class="cu-item" wx:for="{{addressList}}" wx:key="{{key}}">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class="cuIcon-people text-blue margin-right-xs"></text> {{item.name}}
+          <text class=" text-blue margin-left-xs">{{item.phone}}</text>
+          </view>
+        <view class="text-gray text-sm">
+          <text wx:for="{{item.region}}" wx:key="{{index}}" wx:for-item="sub">{{sub}}</text><text>{{item.detail}}</text></view>
+      </view>
+      <view class="action">
+        <switch class="switch-sex sm" bindchange="switchSex"></switch>
+      </view>
+    </view>
+</view>
+<view class="cu-bar btn-group">
+    <button class="cu-btn bg-gradual-blue shadow-blur round lg" bindtap="handleAdd">新增</button>
+  </view>

@@ -1,0 +1,82 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="content">新增商品</view>
+</cu-custom>
+<form>
+<view class="cu-form-group">
+    <view class="title">标题</view>
+    <input bindinput="bindKeyInput" value="{{title}}" data-key="title" placeholder="请输入标题"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">分类</view>
+    <picker bindchange="bindPickerChange" value="{{index}}"  data-type='{{options[index]}}' range="{{options}}">
+      <view class="picker">
+        当前选择：{{options[index]}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+   <view class="title">标签</view>
+    <input bindinput="bindKeyInput"  data-key="tag" value="{{tag}}" placeholder="请输入标签"></input>
+    	<button class="cu-btn bg-green shadow" bindtap="addTags">添加</button>
+  </view>
+  <view class="cu-bar bg-white margin-top">
+  <view class="action">
+    <text class="cuIcon-title text-blue"></text>已选标签
+  </view>
+</view>
+<view class="padding-sm flex flex-wrap">
+  <view class="padding-xs" wx:for="{{tags}}" wx:key>
+   <view class="cu-capsule">
+    <view class="cu-tag bg-red">
+      {{item}}
+    </view>
+    <view class="cu-tag line-red" catchtap="delTags" data-index="{{index}}">
+      <text class="cuIcon-close"></text>
+    </view>
+  </view>
+  </view>
+</view>
+  <view class="cu-form-group">
+		<view class="title">包邮</view>
+		<switch bindchange="bindKeyInput" class="sm" checked value="{{postage}}" data-key="postage"></switch>
+	</view>
+  <view class="cu-form-group  margin-top">
+    <view class="title">上架日期</view>
+    <picker mode="date" value="{{startDate}}" bindchange="startDateChange">
+      <view class="picker">
+        {{startDate}}
+      </view>
+    </picker>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">价格（￥）</view>
+   <input bindinput="bindKeyInput" value="{{price}}" data-key="price" type="number" placeholder="请输入价格"></input>
+  </view>
+  <view class="cu-form-group align-start">
+    <view class="title">商品详情</view>
+    <textarea maxlength="-1" bindinput="bindKeyInput" value="{{content}}" data-key="content" placeholder="请输入商品详情"></textarea>
+  </view>
+  <view class="cu-bar bg-white solid-top">
+    <view class="action">照片</view>
+    <view class="action">
+      {{imgList.length}}/3
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="grid col-3 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<3}}">
+        <text class="cuIcon-cameraadd"></text>
+      </view>
+    </view>
+  </view>
+  <button class='margin cu-btn bg-green shadow lg block' bindtap="tapPublish">上架</button>
+  <view></view>
+</form>
+<!-- 登录弹窗 -->
+<auth is-show="{{isShowAuth}}" bind:onAuthEvent="onAuthEvent"></auth>

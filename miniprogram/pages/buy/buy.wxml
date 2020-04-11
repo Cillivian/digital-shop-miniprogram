@@ -1,0 +1,43 @@
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">订单确认</view>
+</cu-custom>
+<view class="cu-bar bg-white solid-bottom">
+  <view class="action" bindtap="getAddress">
+    <text class="cuIcon-titles text-blue"></text>
+    <text class="text-xl text-bold"> 收货地址</text>
+  </view>
+  <view class="action fr">
+    <button class="cu-btn bg-gradual-blue shadow-blur round fr" bindtap="handleAddAddress">添加地址</button>
+    </view>
+</view>
+<view class="cu-form-group">
+  <view class="title">地址</view>
+  <picker bindchange="bindPickerChange" value="{{index}}" data-type='{{addressList[index]}}' range="{{addressList}}">
+    <view class="picker">
+      当前选择：{{addressList[index]}}
+    </view>
+  </picker>
+</view>
+  <view style="margin-top:60px">
+  <view class="cu-card article no-card arrow margin" wx:for="{{goods}}" wx:key="index" >
+  <view class="cu-item shadow">
+    <view class="title">
+      <view class="text-cut">{{item.title}}</view>
+    </view>
+    <view class="content">
+      <image src="{{item.imgList[0]}}" mode="aspectFill"></image>
+      <view class="desc">
+        <view><text class="text-price text-red ">{{item.price}}</text> x {{item.number}}
+        </view>
+        <view><view class="cu-tag bg-red light sm">包邮</view></view>
+        <view>
+          <view class="cu-tag bg-red light sm round" wx:for="{{item.tags}}" wx:for-item="sub">{{sub}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
+<view class="cu-bar btn-group">
+    <button class="cu-btn bg-gradual-blue shadow-blur round lg" bindtap="handleAddOrder">去付款</button>
+  </view>

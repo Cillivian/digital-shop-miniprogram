@@ -1,0 +1,5 @@
+/* miniprogram/pages/search/search.wxss */
+.img{
+  width:200rpx !important;
+  height: 5em !important;
+}
